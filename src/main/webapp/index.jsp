@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.doa.*"%>
+<%@page import="com.connections.*"%>
+<%@page import="com.entity.*"%>
+<%@page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +20,15 @@
 		<div class="card">
 			<div class="card-body">
 				<p class="text-center fs-1">All Student Details</p>
+				<c:if test="${not empty successMsg}">
+					<p class="text-center text-success">${successMsg}</p>
+					<c:remove var="successMsg" />
+				</c:if>
+
+				<c:if test="${not empty errorMsg}">
+					<p class="text-center text-danger">${errorMsg}</p>
+					<c:remove var="errorMsg" />
+				</c:if>
 				<table class="table">
 					<thead>
 						<tr>
@@ -26,21 +41,31 @@
 						</tr>
 					</thead>
 					<tbody>
+						<%
+						StudentDao studentdao = new StudentDao(DBConnect.getConnection());
+						List<Student> list = studentdao.getAllStudentDetails();
+
+						for (Student s : list) {
+						%>
 						<tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-							<td>Mark</td>
-							<td><a href="editStudent.jsp" class="btn btn-sm btn-primary">Edit</a>
-								<a href="" class="btn btn-sm btn-danger">Delete</a></td>
+							<th scope="row"><%=s.getName()%></th>
+							<td><%=s.getDob()%></td>
+							<td><%=s.getAddress()%></td>
+							<td><%=s.getQualification()%></td>
+							<td><%=s.getEmail()%></td>
+							<td><a href="editStudent.jsp?id=<%=s.getId()%>"
+								class="btn btn-sm btn-primary">Edit</a> <a href=""
+								class="btn btn-sm btn-danger">Delete</a></td>
 						</tr>
+						<%
+						}
+						%>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 </body>
 </html>

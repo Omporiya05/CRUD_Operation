@@ -10,8 +10,18 @@
   	<description></description>
   	<servlet-class>com.servlet.RegisterServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UpdateServlet</servlet-name>
+  	<display-name>UpdateServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.servlet.UpdateServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
   	<url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateServlet</servlet-name>
+  	<url-pattern>/UpdateServlet</url-pattern>
   </servlet-mapping>
 </web-app>
