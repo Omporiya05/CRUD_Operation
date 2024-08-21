@@ -139,4 +139,28 @@ public class StudentDao
 		
 		return result;
 	}
+	
+	public boolean deleteStudent(int id)
+	{
+		boolean result = false;
+		
+		try 
+		{
+			query = "delete from student where id = ?";
+			ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+			int sval = ps.executeUpdate();
+			
+			if(sval == 1)
+			{
+				result = true;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

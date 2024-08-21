@@ -54,7 +54,7 @@
 							<td><%=s.getQualification()%></td>
 							<td><%=s.getEmail()%></td>
 							<td><a href="editStudent.jsp?id=<%=s.getId()%>"
-								class="btn btn-sm btn-primary">Edit</a> <a href=""
+								class="btn btn-sm btn-primary">Edit</a> <a href="delete?id=<%=s.getId()%>"
 								class="btn btn-sm btn-danger">Delete</a></td>
 						</tr>
 						<%
